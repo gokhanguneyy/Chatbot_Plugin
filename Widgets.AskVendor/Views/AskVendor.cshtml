@@ -1,0 +1,46 @@
+﻿@{
+    NopHtml.AppendCssFileParts("~/Plugins/Widgets.AskVendor/Content/css/style.css");
+    NopHtml.AppendCssFileParts("~/Plugins/Widgets.AskVendor/Content/css/modaal.css"); 
+    
+
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.AskVendor/Content/js/askvendor.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.AskVendor/Content/js/modaal.js");
+}
+
+
+<div class="ask-vendor">
+    <button type="button" class="button-2 ask-vendor-button modaal chatbot "
+        data-modaal-content-source ="#askvendor" data-modaal-type="inline" data-modaal-animation="fade"  >
+     @T("Plugin.Widgets.AskVendor.Button")
+      </button>       
+</div>
+
+<div id="askvendor" style="display:none">
+    <div>
+        <div class="chat-container">
+            <div class="chat-container2">
+                <div class="chat-box">
+                    <div class="message sent">
+                        @T("Plugin.Widgets.AskVendor.Hi")
+                    </div>
+
+                </div>
+            </div>
+            <div class="chat-container3">
+                <div class="input-box">
+                    <input type="text" class="input" id="user-message" placeholder="Metin girin...">
+                    <button class="button" onclick="sendMessage('@Model.Name')">@T("Plugin.Widgets.AskVendor.Send")</button>
+                </div>
+            </div>
+
+        </div>
+    </div>  
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿@model Nop.Plugin.Widgets.AskVendor.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+
+    var apiKey = Model.apiKeys;
+}
+
+
+
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+<form asp-controller="WidgetsAskVendor" asp-action="Configure" method="post">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-header">
+                        @T("Plugins.Widgets.AskVendor.Header")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="apiKeys_OverrideForStore" asp-input="apiKeys" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="apiKeys" />
+                                </div>
+                                <div class="col-md-9">
+                                <nop-editor asp-for="apiKeys" />
+                                <span asp-validation-for="apiKeys"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                     <nop-override-store-checkbox asp-for="apiEndPoints_OverrideForStroe" asp-input="apiEndPoints" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                     <nop-label asp-for="apiEndPoints" />
+                                </div>
+                                <div class="col-md-9">
+                                     <nop-editor asp-for="apiEndPoints" />
+                                     <span asp-validation-for="apiEndPoints"></span>
+                                </div>
+                             </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="counts_OverrideForStore" asp-input="counts" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="counts" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="counts" />
+                                <span asp-validation-for="counts" class="text-danger"></span>
+                            </div>
+                        </div>
+                            
+                           
+                        </div>
+                    </div>                  
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary" onclick="sendKey()">@T("Plugins.Widgets.AskVendor.Save")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
