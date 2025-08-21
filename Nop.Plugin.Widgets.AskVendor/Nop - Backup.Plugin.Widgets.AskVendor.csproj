@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputPath>..\..\Presentation\Nop.Web\Plugins\Widgets.AskVendor</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" /> 
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Nop.Services\Nop.Services.csproj" />
+  </ItemGroup>
+  
+  <!-- This target execute after "Build" target -->
+  <Target Name="NopTarget" AfterTargets="Build"> 
+    <!-- Delete unnecessary libraries from plugins path -->
+    <MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />  
+  </Target>
+  
+
+</Project>
